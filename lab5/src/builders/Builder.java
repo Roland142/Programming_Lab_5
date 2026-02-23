@@ -6,18 +6,26 @@ import managers.ManualInput;
 import managers.ScriptExecutorManager;
 
 /**
- * Класс для ввода определенных данных
+ * Базовый класс для пошагового ввода данных (консоль или скрипт).
+ * Использует {@link interfaces.Reader} в зависимости от режима ({@link managers.FileMod}).
+ * Наследники вызывают buildString, buildDouble и т.д. для запроса полей.
  */
 public abstract class Builder {
+    /** Источник ввода: консоль или файл скрипта */
     protected final Reader scanner;
 
+    /**
+     * Создаёт билдер и инициализирует источник ввода по текущему режиму (файл/консоль).
+     */
     public Builder() {
         this.scanner = (FileMod.isFileMod) ? new ScriptExecutorManager() : new ManualInput();
     }
 
     /**
-     * @param name запрашиваемый ввод
-     * @return возвращает введенную пользователем строку
+     * Запрашивает у пользователя непустую строку.
+     *
+     * @param name подпись к запросу (например, "name")
+     * @return введённая строка (не пустая)
      */
     public String buildString(String name) {
         String input;
@@ -34,8 +42,10 @@ public abstract class Builder {
     }
 
     /**
-     * @param name запрашиваемый ввод
-     * @return возвращает введенное пользователем число типа Double
+     * Запрашивает число типа Double; при ошибке формата переспрашивает.
+     *
+     * @param name подпись к запросу
+     * @return введённое число
      */
     public Double buildDouble(String name){
         String input;
@@ -51,6 +61,12 @@ public abstract class Builder {
         }
     }
 
+    /**
+     * Запрашивает значение boolean (true/false по строке).
+     *
+     * @param name подпись к запросу
+     * @return результат Boolean.parseBoolean введённой строки
+     */
     public Boolean buildBoolean(String name) {
         String input;
         System.out.println("Введите " + name);
@@ -60,8 +76,10 @@ public abstract class Builder {
 
 
     /**
-     * @param name запрашиваемый ввод
-     * @return возвращает введенное пользователем число типа Long
+     * Запрашивает число типа Long; при ошибке формата переспрашивает.
+     *
+     * @param name подпись к запросу
+     * @return введённое число
      */
     public Long buildLong(String name){
         String input;
@@ -78,8 +96,10 @@ public abstract class Builder {
     }
 
     /**
-     * @param name запрашиваемый ввод
-     * @return возвращает введенное пользователем число типа int
+     * Запрашивает число типа int; при ошибке формата переспрашивает.
+     *
+     * @param name подпись к запросу
+     * @return введённое число
      */
     public Integer buildInt(String name){
         String input;

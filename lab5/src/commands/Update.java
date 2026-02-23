@@ -4,20 +4,23 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда 'update'
- * Добавляет новый элемент с заданным ключом
+ * Команда {@code update id} — обновляет элемент с заданным id (пошаговый ввод новых полей).
  */
 public class Update extends Command {
     private final CollectionManager collectionManager;
+
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public Update(CollectionManager collectionManager){
         super("update");
         this.collectionManager = collectionManager;
     }
 
-
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Парсит id из args и запускает интерактивное обновление элемента через CollectionManager.update(id).
+     *
+     * @param args один аргумент — id элемента (long)
      */
     @Override
     public void execute(String args) {

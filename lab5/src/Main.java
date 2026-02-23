@@ -7,8 +7,17 @@ import java.util.Scanner;
 
 import java.io.IOException;
 
+/**
+ * Точка входа приложения.
+ * Загружает коллекцию из CSV-файла (аргумент командной строки), регистрирует команды и запускает цикл ввода команд.
+ */
 public class Main {
 
+    /**
+     * Инициализирует менеджеры, загружает коллекцию из файла (args[0]), регистрирует команды и входит в цикл чтения команд с консоли.
+     *
+     * @param args путь к CSV-файлу с начальной коллекцией; при отсутствии аргумента программа завершается с сообщением
+     */
     public static void main(String[] args) {
         CommandManager commandManager = new CommandManager();
         CollectionManager collectionManager = new CollectionManager();

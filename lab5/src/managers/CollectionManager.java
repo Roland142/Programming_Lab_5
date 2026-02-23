@@ -11,17 +11,45 @@ import exceptions.InvalidDataException;
 import elements.*;
 import java.time.LocalDate;
 
+/**
+ * Менеджер коллекции элементов {@link elements.HumanBeing}.
+ * Хранит данные в {@link java.util.TreeMap} (ключ — long, значение — HumanBeing), обеспечивает добавление, удаление,
+ * обновление и вывод. При операциях над пустой коллекцией (где это недопустимо) бросает {@link exceptions.EmptyCollectionException}.
+ */
 public class CollectionManager {
     private TreeMap<Long, HumanBeing> collection = new TreeMap<>();
     private final LocalDate creationDate;
+
+    /**
+     * Создаёт менеджер с пустой коллекцией и фиксирует дату инициализации.
+     */
     public CollectionManager() {
         this.creationDate = LocalDate.now();
     }
 
+    /**
+     * Возвращает ссылку на коллекцию (ключ — long, значение — HumanBeing).
+     *
+     * @return текущая коллекция
+     */
     public TreeMap<Long, HumanBeing> getCollection() {
         return this.collection;
     }
 
+    /**
+     * Создаёт новый HumanBeing по переданным полям и добавляет его в коллекцию (ключ = id элемента).
+     *
+     * @param name имя
+     * @param coordinates координаты
+     * @param realHero признак «настоящий герой»
+     * @param hasToothpick наличие зубочистки
+     * @param impactSpeed скорость удара
+     * @param soundtrackName название саундтрека
+     * @param minutesOfWaiting минуты ожидания
+     * @param mood настроение
+     * @param car машина
+     * @throws InvalidDataException если данные не проходят валидацию
+     */
     public void addElement(String name, Coordinates coordinates, Boolean realHero,
                            Boolean hasToothpick, double impactSpeed, String soundtrackName,
                            int minutesOfWaiting, Mood mood, Car car) throws InvalidDataException {
@@ -30,10 +58,19 @@ public class CollectionManager {
         collection.put(hb.getId(), hb);
     }
 
+    /**
+     * Добавляет готовый объект HumanBeing в коллекцию (ключ = id элемента).
+     *
+     * @param hb добавляемый объект
+     */
     public void addElement(HumanBeing hb) {
         collection.put(hb.getId(), hb);
     }
 
+    /**
+     * Обновляет статический счётчик id в HumanBeing по максимальному id в коллекции.
+     * Вызывать после загрузки из файла, чтобы новые элементы получали корректные id.
+     */
     public void update_ID() {
         long max_id = -1;
         for (HumanBeing hb: this.collection.values()) {
@@ -42,6 +79,9 @@ public class CollectionManager {
         HumanBeing.updateID(max_id < 0 ? 0 : max_id);
     }
 
+    /**
+     * Выводит в консоль справку по всем доступным командам.
+     */
     public void help() {
         System.out.println("Доступные команды:\n" +
                 "help : вывести справку по доступным командам\n" +
@@ -62,22 +102,41 @@ public class CollectionManager {
                 "print_field_ascending_impact_speed : вывести значения поля impactSpeed всех элементов в порядке возрастания\n");
     }
 
+    /**
+     * Выводит тип коллекции, дату инициализации и количество элементов.
+     */
     public void info() {
         System.out.println("Тип: " + collection.getClass());
         System.out.println("Дата инициализации: " + this.creationDate);
         System.out.println("Количество элементов " + collection.size());
     }
 
+    /**
+     * Выводит в консоль все элементы коллекции в строковом представлении.
+     */
     public void show() {
         for (HumanBeing hb: collection.values()) {
             System.out.println(hb);
         }
     }
 
+    /**
+     * Вставляет элемент в коллекцию по заданному ключу.
+     *
+     * @param key ключ (может не совпадать с id элемента)
+     * @param hb добавляемый объект
+     */
     public void insert(long key, HumanBeing hb) {
         collection.put(key, hb);
     }
 
+    /**
+     * Обновляет элемент с заданным id через интерактивный ввод (HumanBeingBuilder.update).
+     *
+     * @param id id элемента для обновления
+     * @throws EmptyCollectionException если коллекция пуста
+     * @throws InvalidDataException если введённые при обновлении данные невалидны
+     */
     public void update(long id) throws InvalidDataException, EmptyCollectionException {
         if (collection.size() == 0) {
             throw new EmptyCollectionException();
@@ -91,6 +150,12 @@ public class CollectionManager {
         }
     }
 
+    /**
+     * Удаляет элемент по ключу.
+     *
+     * @param key ключ удаляемого элемента
+     * @throws EmptyCollectionException если коллекция пуста
+     */
     public void removeKey(long key) throws EmptyCollectionException {
         if (collection.size() == 0) {
             throw new EmptyCollectionException();
@@ -98,11 +163,19 @@ public class CollectionManager {
         collection.remove(key);
     }
 
+    /**
+     * Очищает коллекцию.
+     */
     public void clear() {
         collection.clear();
     }
 
-
+    /**
+     * Удаляет все элементы, меньшие заданного (сравнение по compareTo).
+     *
+     * @param hb эталонный объект
+     * @throws EmptyCollectionException если коллекция пуста
+     */
     public void removeLower(HumanBeing hb) throws EmptyCollectionException {
         if (collection.size() == 0) {
             throw new EmptyCollectionException();
@@ -116,6 +189,12 @@ public class CollectionManager {
         this.collection = newCollection;
     }
 
+    /**
+     * Удаляет все элементы, ключ которых больше заданного.
+     *
+     * @param akey граничный ключ (остаются элементы с ключом &lt;= akey)
+     * @throws EmptyCollectionException если коллекция пуста
+     */
     public void removeGreaterKey(long akey) throws EmptyCollectionException {
         if (collection.size() == 0) {
             throw new EmptyCollectionException();
@@ -129,6 +208,12 @@ public class CollectionManager {
         this.collection = newCollection;
     }
 
+    /**
+     * Удаляет все элементы с заданным значением minutesOfWaiting.
+     *
+     * @param minuts значение поля minutesOfWaiting для удаляемых элементов
+     * @throws EmptyCollectionException если коллекция пуста
+     */
     public void removeAllByMinutesOfWaiting(int minuts) throws EmptyCollectionException {
         if (collection.size() == 0) {
             throw new EmptyCollectionException();
@@ -144,6 +229,11 @@ public class CollectionManager {
         this.collection = newCollection;
     }
 
+    /**
+     * Выводит элементы в порядке возрастания (сортировка по compareTo).
+     *
+     * @throws EmptyCollectionException если коллекция пуста
+     */
     public void printAscending() throws EmptyCollectionException {
         if (collection.size() == 0) {
             throw new EmptyCollectionException();
@@ -155,6 +245,11 @@ public class CollectionManager {
         }
     }
 
+    /**
+     * Выводит значения поля impactSpeed всех элементов в порядке возрастания.
+     *
+     * @throws EmptyCollectionException если коллекция пуста
+     */
     public void printFieldAscendingImpactSpeed() throws EmptyCollectionException {
         if (collection.size() == 0) {
             throw new EmptyCollectionException();
@@ -169,6 +264,12 @@ public class CollectionManager {
         }
     }
 
+    /**
+     * Проверяет, занят ли уже такой id в коллекции (по полю id элементов).
+     *
+     * @param id проверяемый идентификатор
+     * @return true, если хотя бы один элемент имеет данный id
+     */
     public boolean isIDUsed (long id) {
         for (HumanBeing hb: collection.values()) {
             if (hb.getId() == id) {

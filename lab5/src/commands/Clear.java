@@ -3,20 +3,23 @@ package commands;
 import managers.CollectionManager;
 
 /**
- * Команда 'clear'
- * Добавляет новый элемент с заданным ключом
+ * Команда {@code clear} — очищает коллекцию.
  */
 public class Clear extends Command {
     private final CollectionManager collectionManager;
+
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public Clear(CollectionManager collectionManager){
         super("clear");
         this.collectionManager = collectionManager;
     }
 
-
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Очищает коллекцию и выводит сообщение об успехе.
+     *
+     * @param args не используется
      */
     @Override
     public void execute(String args) {

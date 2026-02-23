@@ -4,20 +4,23 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда 'remove_key'
- * Добавляет новый элемент с заданным ключом
+ * Команда {@code remove_key key} — удаляет элемент из коллекции по заданному ключу.
  */
 public class RemoveKey extends Command {
     private final CollectionManager collectionManager;
+
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public RemoveKey(CollectionManager collectionManager){
         super("remove_key");
         this.collectionManager = collectionManager;
     }
 
-
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Удаляет элемент с ключом, равным args (long). При пустой коллекции выводит сообщение об ошибке.
+     *
+     * @param args один аргумент — ключ (long)
      */
     @Override
     public void execute(String args) {

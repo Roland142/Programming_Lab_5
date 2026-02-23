@@ -3,19 +3,23 @@ package commands;
 import managers.CommandManager;
 
 /**
- * Команда 'history'
- * Выводит последние 12 команд без аргументов
+ * Команда {@code history} — выводит последние 12 выполненных команд (без аргументов).
  */
 public class History extends Command{
     private final CommandManager commandManager;
+
+    /**
+     * @param commandManager менеджер команд (доступ к lastCommands)
+     */
     public History(CommandManager commandManager) {
-        this.commandManager = commandManager;
         super("history");
+        this.commandManager = commandManager;
     }
 
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Выводит имена последних 12 команд.
+     *
+     * @param args не используется
      */
     @Override
     public void execute(String args) {

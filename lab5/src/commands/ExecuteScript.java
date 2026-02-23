@@ -7,22 +7,25 @@ import java.util.NoSuchElementException;
 
 
 /**
- * Команда 'execute_script'
- * Запускает скрипт, в котором содержатся команды для взаимодействия с коллекцией
+ * Команда {@code execute_script file_name} — выполняет команды из указанного файла построчно.
+ * Поддерживает вложенные вызовы; рекурсия по одному и тому же пути блокируется.
  */
 public class ExecuteScript extends Command {
 
     private final CommandManager commandManager;
 
-
+    /**
+     * @param commandManager менеджер команд для выполнения строк скрипта
+     */
     public ExecuteScript(CommandManager commandManager) {
         super("execute_script");
         this.commandManager = commandManager;
     }
 
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Открывает файл по пути args, переключает ввод в режим файла и выполняет каждую строку как команду.
+     *
+     * @param args путь к файлу скрипта
      */
     @Override
     public void execute(String args) {

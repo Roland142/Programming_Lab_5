@@ -4,20 +4,23 @@ import managers.CollectionManager;
 import exceptions.EmptyCollectionException;
 
 /**
- * Команда 'print_ascending'
- * Выводит значенияполя category в порядке возрастания для всех элементов коллекции
+ * Команда {@code print_ascending} — выводит элементы коллекции в порядке возрастания (сортировка по id).
  */
 public class PrintAscending extends Command {
     private final CollectionManager collectionManager;
 
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public PrintAscending(CollectionManager collectionManager){
         super("print_ascending");
         this.collectionManager = collectionManager;
     }
 
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Выводит элементы в отсортированном по возрастанию порядке. При пустой коллекции — сообщение об ошибке.
+     *
+     * @param args не используется
      */
     @Override
     public void execute(String args)  {

@@ -7,14 +7,17 @@ import java.util.Scanner;
 import java.util.ArrayDeque;
 
 /**
- Класс для хранения файл менеджера для команды execute
+ * Чтение ввода из файла скрипта (очередь файлов для execute_script).
+ * Реализует {@link interfaces.Reader}; при ошибке чтения nextLine() возвращает пустую строку.
  */
 public class ScriptExecutorManager implements Reader {
     private static final ArrayDeque<String> filepaths = new ArrayDeque<>();
     private static final ArrayDeque<Scanner> reader = new ArrayDeque<>();
 
     /**
-     * @return Достает первый элемент из очереди и читает его
+     * Читает следующую строку из текущего (верхнего) файла в очереди.
+     *
+     * @return прочитанная строка
      * @throws IOException ошибка чтения файла
      */
     public static String readfile() throws IOException {
@@ -22,9 +25,10 @@ public class ScriptExecutorManager implements Reader {
     }
 
     /**
-     * Добавляет содержимое файла и путь к файлу в очереди
-     * @param file_path путь к файлу
-     * @throws FileNotFoundException файл не найден
+     * Добавляет файл в начало очереди (чтение будет из этого файла).
+     *
+     * @param file_path путь к файлу скрипта
+     * @throws FileNotFoundException если файл не найден
      */
     public static void pushFile(String file_path) throws FileNotFoundException {
         File file = new File(file_path);
@@ -33,7 +37,9 @@ public class ScriptExecutorManager implements Reader {
     }
 
     /**
-     * @throws IOException
+     * Закрывает текущий файл и удаляет его из очереди.
+     *
+     * @throws IOException при ошибке закрытия
      */
     public static void popfile() throws IOException {
         reader.getFirst().close();
@@ -41,11 +47,22 @@ public class ScriptExecutorManager implements Reader {
         filepaths.pop();
     }
 
+    /**
+     * Проверяет, не выполнялся ли уже этот файл (защита от рекурсии по путям).
+     *
+     * @param filepath путь к файлу (приводится к абсолютному)
+     * @return true, если файл уже в стеке выполнения
+     */
     public static boolean fileReapeting(String filepath) {
         String absolutePath = new File(filepath).getAbsolutePath();
         return filepaths.contains(absolutePath);
     }
 
+    /**
+     * Возвращает следующую строку из текущего файла скрипта; при IOException — пустая строка.
+     *
+     * @return строка или ""
+     */
     @Override
     public String nextLine() {
         try {

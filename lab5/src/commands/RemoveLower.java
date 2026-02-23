@@ -5,21 +5,24 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда 'remove_lower'
- * Добавляет новый элемент с заданным ключом
+ * Команда {@code remove_lower} — удаляет из коллекции все элементы, меньшие заданного (ввод эталона пошагово).
  */
 public class RemoveLower extends Command {
 
     private final CollectionManager collectionManager;
 
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public RemoveLower(CollectionManager collectionManager){
         super("remove_lower");
         this.collectionManager = collectionManager;
     }
 
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Создаёт эталонный элемент через HumanBeingBuilder и удаляет все элементы, меньшие его (compareTo).
+     *
+     * @param args не используется
      */
     @Override
     public void execute(String args) {

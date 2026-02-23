@@ -4,11 +4,17 @@ import interfaces.Executor;
 import java.util.Objects;
 
 /**
- * Класс для всех команд, являющийся абстракцией
+ * Абстрактная команда с именем и методом выполнения.
+ * Реализует {@link interfaces.Executor}; наследники переопределяют {@link #execute(String)}.
  */
 public abstract class Command implements Executor {
     private final String name;
 
+    /**
+     * Создаёт команду с заданным именем (используется пользователем для вызова).
+     *
+     * @param name имя команды
+     */
     public Command(String name){
         this.name=name;
     }
@@ -18,6 +24,11 @@ public abstract class Command implements Executor {
         return name;
     }
 
+    /**
+     * Возвращает имя команды.
+     *
+     * @return имя (например, "help", "insert")
+     */
     public String getName(){
         return this.name;
     }
@@ -35,6 +46,11 @@ public abstract class Command implements Executor {
         return Objects.hash(name);
     }
 
+    /**
+     * Выполняет команду с заданными аргументами.
+     *
+     * @param args строка аргументов (может быть пустой или null)
+     */
     public abstract void execute(String args);
 }
 

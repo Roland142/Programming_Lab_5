@@ -2,17 +2,21 @@ package commands;
 
 
 /**
- * Команда 'exit'
- * Выход из программы без сохранения в файл
+ * Команда {@code exit} — завершает программу без сохранения коллекции в файл.
  */
 public class Exit extends Command {
+
+    /**
+     * Создаёт команду выхода.
+     */
     public Exit(){
         super("exit");
     }
 
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Завершает работу приложения (System.exit(0)).
+     *
+     * @param args не используется
      */
     @Override
     public void execute(String args) {

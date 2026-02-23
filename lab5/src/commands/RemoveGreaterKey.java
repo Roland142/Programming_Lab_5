@@ -4,20 +4,23 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда 'remove_greater_key'
- * Добавляет новый элемент с заданным ключом
+ * Команда {@code remove_greater_key key} — удаляет все элементы, ключ которых больше заданного.
  */
 public class RemoveGreaterKey extends Command {
     private final CollectionManager collectionManager;
+
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public RemoveGreaterKey(CollectionManager collectionManager){
         super("remove_greater_key");
         this.collectionManager = collectionManager;
     }
 
-
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Удаляет элементы с ключом больше args (long).
+     *
+     * @param args один аргумент — граничный ключ (long)
      */
     @Override
     public void execute(String args) {

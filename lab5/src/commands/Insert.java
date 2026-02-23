@@ -5,21 +5,24 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда 'insert'
- * Добавляет новый элемент с заданным ключом
+ * Команда {@code insert key} — добавляет новый элемент с заданным ключом (ввод полей пошагово).
  */
 public class Insert extends Command {
 
     private final CollectionManager collectionManager;
 
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public Insert(CollectionManager collectionManager){
         super("insert");
         this.collectionManager = collectionManager;
     }
 
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Парсит ключ из args, запрашивает поля элемента через HumanBeingBuilder и вставляет в коллекцию.
+     *
+     * @param args один аргумент — ключ (long)
      */
     @Override
     public void execute(String args) {

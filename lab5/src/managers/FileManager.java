@@ -14,20 +14,28 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Класс, отвечающий за чтение и запись содержимого коллекции в/из файла в формате CSV
+ * Чтение и запись коллекции в файл в формате CSV.
+ * При загрузке парсит строки, создаёт {@link elements.HumanBeing} и добавляет их через {@link CollectionManager#insert}.
  */
 public class FileManager {
     private final CollectionManager collectionManager;
     private static final String SEPARATOR = ";";
 
+    /**
+     * Создаёт менеджер файла, привязанный к заданному CollectionManager.
+     *
+     * @param collectionManager менеджер коллекции для добавления/чтения элементов
+     */
     public FileManager(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
     /**
-     * Читает CSV файл и добавляет объекты в коллекцию
+     * Читает CSV-файл и добавляет объекты в коллекцию (каждая строка — ключ и элемент).
      *
      * @param file_path путь к файлу
+     * @throws IOException ошибка чтения файла
+     * @throws InvalidDataException некорректные данные в строке CSV
      */
     public void addFromFile(String file_path) throws IOException, InvalidDataException {
         File file = new File(file_path);
@@ -48,7 +56,8 @@ public class FileManager {
     }
 
     /**
-     * Записывает коллекцию в файл в формате CSV
+     * Записывает коллекцию в файл в формате CSV (ключ;поля элемента).
+     * Ошибки записи выводятся в stderr, исключение не бросается.
      *
      * @param file_path путь к файлу
      */
@@ -66,7 +75,10 @@ public class FileManager {
     }
 
     /**
-     * Вспомогательный метод для конвертации объекта в строку CSV
+     * Формирует строку CSV из полей элемента (без ключа).
+     *
+     * @param hb элемент коллекции
+     * @return строка полей через разделитель
      */
     private String HumanToCsv(HumanBeing hb) {
         return String.join(SEPARATOR,
@@ -84,7 +96,11 @@ public class FileManager {
     }
 
     /**
-     * Вспомогательный метод для создания объекта из строки CSV
+     * Парсит одну строку CSV в массив [ключ, HumanBeing].
+     *
+     * @param csvLine строка CSV
+     * @return массив из двух элементов: (Long) ключ, (HumanBeing) объект
+     * @throws InvalidDataException при ошибке разбора или валидации
      */
     private Object[] parseHumanFromCsv(String csvLine) throws InvalidDataException{
         String[] parts = csvLine.split(SEPARATOR);

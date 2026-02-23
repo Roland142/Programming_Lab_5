@@ -5,22 +5,28 @@ import java.util.HashMap;
 import java.util.ArrayDeque;
 
 /**
- * Класс, отвечающий за исполнение команд
+ * Реестр и исполнение команд по имени.
+ * Хранит последние 12 выполненных команд для истории.
  */
 public class CommandManager {
     private HashMap<String, Command> commands = new HashMap<>();
+    /** История последних 12 имён выполненных команд */
     public ArrayDeque<String> lastCommands = new ArrayDeque<>();
 
     /**
-     * @param command команда, добавляемая в Map
+     * Регистрирует команду под её именем (getName()).
+     *
+     * @param command команда для добавления
      */
     public void addCommand(Command command) {
         this.commands.put(command.getName(), command);
     }
 
     /**
-     * @param name название команды
-     * @param args ее аргументы(id элемента, index коллекции и тд)
+     * Выполняет команду по имени с заданными аргументами и добавляет имя в историю.
+     *
+     * @param name имя команды (как введено пользователем)
+     * @param args строка аргументов (id, ключ, путь к файлу и т.д.)
      */
     public void execute(String name, String args) {
         if (lastCommands.size() > 12) {

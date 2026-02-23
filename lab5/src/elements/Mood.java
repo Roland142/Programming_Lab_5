@@ -1,6 +1,9 @@
 package elements;
 
-/** Настроение персонажа. */
+/**
+ * Настроение персонажа.
+ * Используется в поле mood элемента {@link elements.HumanBeing}.
+ */
 public enum Mood {
     SADNESS,
     GLOOM,

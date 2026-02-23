@@ -4,20 +4,23 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда 'remove_all_by_minutes_of_waiting'
- * Добавляет новый элемент с заданным ключом
+ * Команда {@code remove_all_by_minutes_of_waiting minutesOfWaiting} — удаляет все элементы с заданным значением поля minutesOfWaiting.
  */
 public class RemoveAllByMinutesOfWaiting extends Command {
     private final CollectionManager collectionManager;
+
+    /**
+     * @param collectionManager менеджер коллекции
+     */
     public RemoveAllByMinutesOfWaiting(CollectionManager collectionManager){
         super("remove_all_by_minutes_of_waiting");
         this.collectionManager = collectionManager;
     }
 
-
     /**
-     * @param args аргументы команды
-     * Метод запуска команды
+     * Удаляет элементы, у которых minutesOfWaiting совпадает с args (int).
+     *
+     * @param args один аргумент — значение minutesOfWaiting (int)
      */
     @Override
     public void execute(String args) {
