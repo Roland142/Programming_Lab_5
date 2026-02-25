@@ -31,6 +31,9 @@ public class Insert extends Command {
         } else {
             try {
                 long key = Long.parseLong(args.trim());
+                if (collectionManager.getCollection().containsKey(key)) {
+                    throw new InvalidDataException("Ключи должны быть уникальными");
+                }
                 collectionManager.insert(key, new HumanBeingBuilder().create());
                 System.out.println("Объект добавлен успешно");
             } catch (NumberFormatException e){

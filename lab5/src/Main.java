@@ -4,7 +4,6 @@ import managers.FileManager;
 import commands.*;
 
 import java.util.Scanner;
-
 import java.io.IOException;
 
 /**
@@ -31,6 +30,7 @@ public class Main {
                 System.out.println("Ошибка чтения файла");
             } catch (InvalidDataException e) {
                 System.out.println(e.getMessage());
+                System.exit(1);
             }
         } else {
             System.out.println("Файл не обнаружен");
@@ -58,6 +58,7 @@ public class Main {
 
         Scanner scanner = UserScanner.getUserScanner();
         while (true) {
+            System.out.println("Введите команду: ");
             String CommandToSplit = scanner.nextLine().trim() + " ";
             String[] command = CommandToSplit.split(" ", 2);
             commandManager.execute(command[0], command[1].trim());

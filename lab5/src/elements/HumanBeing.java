@@ -270,8 +270,14 @@ public class HumanBeing implements Comparable<HumanBeing>{
     }
 
     @Override
-    public int compareTo(HumanBeing humanbeing) {
-        return humanbeing == null ? -1 : java.lang.Long.compare(this.id, humanbeing.id);
+    public int compareTo(HumanBeing other) {
+        if (this == other) return 0;
+        if (other == null) return 1;
+        int res = this.name.compareTo(other.name);
+        if (res == 0) {
+            return Long.compare(this.id, other.id);
+        }
+        return res;
     }
 
     @Override
@@ -292,12 +298,24 @@ public class HumanBeing implements Comparable<HumanBeing>{
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        HumanBeing hb = (HumanBeing) obj;
-        return this.id == hb.id;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        HumanBeing that = (HumanBeing) obj;
+
+        return id == that.id &&
+                Double.compare(that.impactSpeed, impactSpeed) == 0 &&
+                minutesOfWaiting == that.minutesOfWaiting &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(coordinates, that.coordinates) &&
+                Objects.equals(realHero, that.realHero) &&
+                Objects.equals(hasToothpick, that.hasToothpick) &&
+                Objects.equals(soundtrackName, that.soundtrackName) &&
+                mood == that.mood &&
+                Objects.equals(car, that.car);
     }
 
     @Override
-    public int hashCode () {
-        return Objects.hash(this.id);
+    public int hashCode() {
+        return Objects.hash(id, name, coordinates, realHero, hasToothpick,
+                impactSpeed, soundtrackName, minutesOfWaiting, mood, car);
     }
 }

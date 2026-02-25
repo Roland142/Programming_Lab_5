@@ -49,8 +49,11 @@ public class FileManager {
                 Object[] resultparsing = parseHumanFromCsv(line);
                 long key = (long) resultparsing[0];
                 HumanBeing hb = (HumanBeing) resultparsing[1];
-
-                collectionManager.insert(key, hb);
+                if (collectionManager.getCollection().containsKey(key)) {
+                    throw new InvalidDataException("Ключи должны быть уникальными");
+                } else {
+                    collectionManager.insert(key, hb);
+                }
             }
         }
     }
@@ -134,12 +137,16 @@ public class FileManager {
             if (id != -1) {
                 if (!collectionManager.isIDUsed(id)) {
                     hb.setId(id);
+                } else {
+                    throw new InvalidDataException("ID объекта должен быть уникальным " + "\n" + "Повторяющийся id: " + id);
                 }
             }
             if (creationDate != null) {
                 hb.setCreationDate(creationDate);
             }
             return new Object[] {key, hb};
+        } catch (InvalidDataException e) {
+            throw e;
         } catch (Exception e) {
             throw new InvalidDataException("Некорректные данные в файле для объекта HumanBeing");
         }
