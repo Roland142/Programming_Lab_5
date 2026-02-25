@@ -7,7 +7,7 @@ import exceptions.InvalidDataException;
 
 /**
  * Элемент коллекции — описание персонажа.
- * Хранит идентификатор, имя, координаты, дату создания и прочие поля.
+ * Хранит id, имя, координаты, дату создания и остальные поля.
  * Реализует {@link Comparable} по полю id.
  */
 public class HumanBeing implements Comparable<HumanBeing>{
@@ -25,8 +25,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     private static long ID = 1;
 
     /**
-     * Создаёт объект с автогенерируемым id и заданными полями.
-     *
+     * Создаёт объект с автогенерируемыми id и creationDate и заданными полями.
      * @param name имя (не null, не пустая строка)
      * @param coordinates координаты
      * @param realHero признак «настоящий герой» (не null)
@@ -55,15 +54,6 @@ public class HumanBeing implements Comparable<HumanBeing>{
     }
 
     /**
-     * Устанавливает начальное значение счётчика id для новых объектов.
-     *
-     * @param id следующее значение счётчика (обычно max_id + 1 или 0 для пустой коллекции)
-     */
-    public static void updateID(long id) {
-        ID = id;
-    }
-
-    /**
      * Возвращает идентификатор объекта.
      *
      * @return id (должен быть больше 0)
@@ -86,7 +76,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     /**
      * Возвращает имя персонажа.
      *
-     * @return имя (не null, не пустая строка)
+     * @return имя
      */
     public String getName() {
         return name;
@@ -106,7 +96,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     /**
      * Возвращает координаты.
      *
-     * @return координаты (не null)
+     * @return координаты
      */
     public Coordinates getCoordinates() {
         return coordinates;
@@ -122,9 +112,9 @@ public class HumanBeing implements Comparable<HumanBeing>{
     }
 
     /**
-     * Возвращает дату создания записи.
+     * Возвращает дату создания.
      *
-     * @return дата создания (не null)
+     * @return дата создания
      */
     public java.util.Date getCreationDate() {
         return creationDate;
@@ -133,7 +123,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     /**
      * Устанавливает дату создания (при загрузке из файла).
      *
-     * @param creationDate дата (не null)
+     * @param creationDate дата
      */
     public void setCreationDate(java.util.Date creationDate) {
         this.creationDate = creationDate;
@@ -142,7 +132,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     /**
      * Возвращает признак «настоящий герой».
      *
-     * @return true/false (не null)
+     * @return true/false
      */
     public Boolean getRealHero() {
         return realHero;
@@ -151,7 +141,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     /**
      * Устанавливает признак «настоящий герой».
      *
-     * @param realHero значение (не null)
+     * @param realHero значение
      * @throws InvalidDataException если realHero == null
      */
     public void setRealHero(Boolean realHero) throws InvalidDataException {
@@ -198,7 +188,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     /**
      * Возвращает название саундтрека.
      *
-     * @return строка (не null)
+     * @return строка
      */
     public String getSoundtrackName() {
         return soundtrackName;
@@ -269,6 +259,20 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.car = car;
     }
 
+    /**
+     * Устанавливает начальное значение счётчика id для новых объектов.
+     *
+     * @param id следующее значение счётчика (обычно max_id + 1 или 0 для пустой коллекции)
+     */
+    public static void updateID(long id) {
+        ID = id;
+    }
+
+    /**
+     * Сравнивает объекты.
+     * Сравнение идет сначала по имени (алфавитный порядок),
+     * а при совпадении — по уникальному идентификатору (id).
+     */
     @Override
     public int compareTo(HumanBeing other) {
         if (this == other) return 0;

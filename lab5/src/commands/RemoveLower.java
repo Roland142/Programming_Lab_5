@@ -5,7 +5,7 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда {@code remove_lower} — удаляет из коллекции все элементы, меньшие заданного (ввод эталона пошагово).
+ * Команда remove_lower — удаляет из коллекции все элементы, меньшие заданного.
  */
 public class RemoveLower extends Command {
 
@@ -20,7 +20,7 @@ public class RemoveLower extends Command {
     }
 
     /**
-     * Создаёт эталонный элемент через HumanBeingBuilder и удаляет все элементы, меньшие его (compareTo).
+     * Создаёт эталонный элемент через HumanBeingBuilder и удаляет все элементы, меньшие его.
      *
      * @param args не используется
      */

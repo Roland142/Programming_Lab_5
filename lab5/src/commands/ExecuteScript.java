@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 
 /**
- * Команда {@code execute_script file_name} — выполняет команды из указанного файла построчно.
+ * Команда execute_script file_name — выполняет команды из указанного файла построчно.
  * Поддерживает вложенные вызовы; рекурсия по одному и тому же пути блокируется.
  */
 public class ExecuteScript extends Command {

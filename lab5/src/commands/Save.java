@@ -3,7 +3,7 @@ package commands;
 import managers.FileManager;
 
 /**
- * Команда {@code save} — сохраняет коллекцию в CSV-файл (путь задаётся при создании команды).
+ * Команда save — сохраняет коллекцию в CSV-файл.
  */
 public class Save extends Command {
 
@@ -21,7 +21,7 @@ public class Save extends Command {
     }
 
     /**
-     * Записывает коллекцию в файл и выводит сообщение об успехе.
+     * Записывает коллекцию в файл.
      *
      * @param args не используется
      */

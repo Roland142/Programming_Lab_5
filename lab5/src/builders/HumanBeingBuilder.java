@@ -19,7 +19,7 @@ public class HumanBeingBuilder extends Builder {
                 buildString("name"),
                 new CoordinatesBuilder().create(),
                 buildBoolean("realHero"),
-                buildBoolean("hasToothpick"),
+                buildBooleanNullable("hasToothpick"),
                 buildDouble("impactSpeed"),
                 buildString("soundtrackName"),
                 buildInt("minutesOfWaiting"),
@@ -38,7 +38,7 @@ public class HumanBeingBuilder extends Builder {
         hb.setName(buildString("name"));
         hb.setCoordinates(new CoordinatesBuilder().create());
         hb.setRealHero(buildBoolean("realHero"));
-        hb.setHasToothpick(buildBoolean("hasToothpick"));
+        hb.setHasToothpick(buildBooleanNullable("hasToothpick"));
         hb.setImpactSpeed(buildDouble("impactSpeed"));
         hb.setSoundtrackName(buildString("soundtrackName"));
         hb.setMinutesOfWaiting(buildInt("minutesOfWaiting"));

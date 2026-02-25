@@ -27,7 +27,7 @@ public abstract class Command implements Executor {
     /**
      * Возвращает имя команды.
      *
-     * @return имя (например, "help", "insert")
+     * @return имя
      */
     public String getName(){
         return this.name;
@@ -49,7 +49,7 @@ public abstract class Command implements Executor {
     /**
      * Выполняет команду с заданными аргументами.
      *
-     * @param args строка аргументов (может быть пустой или null)
+     * @param args строка аргументов
      */
     public abstract void execute(String args);
 }

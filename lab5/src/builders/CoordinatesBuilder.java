@@ -12,7 +12,7 @@ public class CoordinatesBuilder extends Builder {
      * Запрашивает x (double) и y (int), создаёт Coordinates.
      *
      * @return новый объект Coordinates
-     * @throws InvalidDataException если значения не проходят валидацию (x <= -975, y = null и т.д.)
+     * @throws InvalidDataException если значения не проходят валидацию
      */
     public Coordinates create() throws InvalidDataException {
         return new Coordinates(buildDouble("x"), buildInt("y"));

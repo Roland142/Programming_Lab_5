@@ -9,7 +9,7 @@ public interface Executor {
     /**
      * Выполняет команду с заданными аргументами.
      *
-     * @param args строка аргументов (может быть пустой или null в зависимости от команды)
+     * @param args строка аргументов (может быть пустой или null)
      */
     void execute(String args);
 }

@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 /**
  * Единый экземпляр {@link java.util.Scanner} для ввода с консоли.
- * Используется {@link ManualInput} и при необходимости может быть подменён (тесты, скрипты).
+ * Используется {@link ManualInput}.
  */
 public class UserScanner {
-    /** Сканер стандартного ввода */
     public static Scanner customScanner = new Scanner(System.in);
 
     /**

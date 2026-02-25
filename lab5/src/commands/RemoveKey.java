@@ -4,7 +4,7 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда {@code remove_key key} — удаляет элемент из коллекции по заданному ключу.
+ * Команда remove_key key — удаляет элемент из коллекции по заданному ключу.
  */
 public class RemoveKey extends Command {
     private final CollectionManager collectionManager;

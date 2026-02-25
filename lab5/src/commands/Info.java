@@ -3,7 +3,7 @@ package commands;
 import managers.CollectionManager;
 
 /**
- * Команда {@code info} — выводит тип коллекции, дату инициализации и количество элементов.
+ * Команда info — выводит тип коллекции, дату инициализации и количество элементов.
  */
 public class Info extends Command {
 

@@ -5,7 +5,7 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда {@code insert key} — добавляет новый элемент с заданным ключом (ввод полей пошагово).
+ * Команда insert key — добавляет новый элемент с заданным ключом.
  */
 public class Insert extends Command {
 

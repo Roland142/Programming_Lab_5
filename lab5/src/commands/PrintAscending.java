@@ -4,7 +4,7 @@ import managers.CollectionManager;
 import exceptions.EmptyCollectionException;
 
 /**
- * Команда {@code print_ascending} — выводит элементы коллекции в порядке возрастания (сортировка по id).
+ * Команда print_ascending — выводит элементы коллекции в порядке возрастания (сортировка по name).
  */
 public class PrintAscending extends Command {
     private final CollectionManager collectionManager;

@@ -4,7 +4,7 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда {@code remove_greater_key key} — удаляет все элементы, ключ которых больше заданного.
+ * Команда remove_greater_key key — удаляет все элементы, ключ которых больше заданного.
  */
 public class RemoveGreaterKey extends Command {
     private final CollectionManager collectionManager;

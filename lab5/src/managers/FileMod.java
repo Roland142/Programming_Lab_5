@@ -5,7 +5,6 @@ package managers;
  * Используется в {@link builders.Builder} для выбора {@link interfaces.Reader}.
  */
 public class FileMod {
-    /** true — ввод из скрипта (execute_script), false — с консоли */
     public static boolean isFileMod = false;
 
     /**

@@ -3,7 +3,7 @@ package commands;
 import managers.CollectionManager;
 
 /**
- * Команда {@code clear} — очищает коллекцию.
+ * Команда clear — очищает коллекцию.
  */
 public class Clear extends Command {
     private final CollectionManager collectionManager;

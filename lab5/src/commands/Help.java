@@ -3,13 +3,13 @@ package commands;
 import managers.CollectionManager;
 
 /**
- * Команда {@code help} — выводит справку по всем доступным командам.
+ * Команда help — выводит справку по всем доступным командам.
  */
 public class Help extends Command{
     private final CollectionManager collectionManager;
 
     /**
-     * @param collectionManager менеджер коллекции (вызов help())
+     * @param collectionManager менеджер коллекции
      */
     public Help(CollectionManager collectionManager){
         super("help");

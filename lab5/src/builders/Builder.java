@@ -42,6 +42,19 @@ public abstract class Builder {
     }
 
     /**
+     * Запрашивает у пользователя строку возможно пустую.
+     *
+     * @param name подпись к запросу
+     * @return введённая строка или null, если строка пустая
+     */
+    public String buildStringNullable(String name) {
+        System.out.println("Введите " + name);
+        String input = scanner.nextLine();
+        if (input == null || input.trim().isEmpty()) return null;
+        return input.trim();
+    }
+
+    /**
      * Запрашивает число типа Double; при ошибке формата переспрашивает.
      *
      * @param name подпись к запросу
@@ -62,18 +75,35 @@ public abstract class Builder {
     }
 
     /**
-     * Запрашивает значение boolean (true/false по строке).
+     * Запрашивает значение boolean (обязательно не null).
      *
      * @param name подпись к запросу
      * @return результат Boolean.parseBoolean введённой строки
      */
     public Boolean buildBoolean(String name) {
-        String input;
-        System.out.println("Введите " + name);
-        input = scanner.nextLine();
-        return Boolean.parseBoolean(input);
+        while (true) {
+            System.out.println("Введите " + name);
+            String input = scanner.nextLine();
+            if (input == null || input.trim().isEmpty()) {
+                System.err.println("Поле не может быть пустым!");
+                continue;
+            }
+            return Boolean.parseBoolean(input);
+        }
         }
 
+    /**
+     * Запрашивает значение boolean (может быть null).
+     *
+     * @param name подпись к запросу
+     * @return результат Boolean.parseBoolean введённой строки или null, если строка пустая
+     */
+    public Boolean buildBooleanNullable(String name) {
+        System.out.println("Введите " + name);
+        String input = scanner.nextLine();
+        if (input == null || input.trim().isEmpty()) return null;
+        return Boolean.parseBoolean(input.trim());
+    }
 
     /**
      * Запрашивает число типа Long; при ошибке формата переспрашивает.

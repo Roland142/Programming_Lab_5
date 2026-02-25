@@ -3,13 +3,13 @@ package commands;
 import managers.CommandManager;
 
 /**
- * Команда {@code history} — выводит последние 12 выполненных команд (без аргументов).
+ * Команда history — выводит последние 12 выполненных команд (без аргументов).
  */
 public class History extends Command{
     private final CommandManager commandManager;
 
     /**
-     * @param commandManager менеджер команд (доступ к lastCommands)
+     * @param commandManager менеджер команд
      */
     public History(CommandManager commandManager) {
         super("history");

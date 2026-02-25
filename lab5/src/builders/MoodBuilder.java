@@ -21,6 +21,8 @@ public class MoodBuilder extends Builder {
 
         while (true) {
             String input = scanner.nextLine();
+            if (input == null || input.trim().isEmpty())
+                return null;
             try {
                 return Mood.valueOf(input.toUpperCase());
 

@@ -21,7 +21,7 @@ public class CollectionManager {
     private final LocalDate creationDate;
 
     /**
-     * Создаёт менеджер с пустой коллекцией и фиксирует дату инициализации.
+     * Создаёт менеджер с пустой коллекцией и устанавливает дату инициализации.
      */
     public CollectionManager() {
         this.creationDate = LocalDate.now();
@@ -36,27 +36,6 @@ public class CollectionManager {
         return this.collection;
     }
 
-    /**
-     * Создаёт новый HumanBeing по переданным полям и добавляет его в коллекцию (ключ = id элемента).
-     *
-     * @param name имя
-     * @param coordinates координаты
-     * @param realHero признак «настоящий герой»
-     * @param hasToothpick наличие зубочистки
-     * @param impactSpeed скорость удара
-     * @param soundtrackName название саундтрека
-     * @param minutesOfWaiting минуты ожидания
-     * @param mood настроение
-     * @param car машина
-     * @throws InvalidDataException если данные не проходят валидацию
-     */
-    public void addElement(String name, Coordinates coordinates, Boolean realHero,
-                           Boolean hasToothpick, double impactSpeed, String soundtrackName,
-                           int minutesOfWaiting, Mood mood, Car car) throws InvalidDataException {
-        HumanBeing hb = new HumanBeing(name, coordinates, realHero, hasToothpick,
-                impactSpeed, soundtrackName, minutesOfWaiting, mood, car);
-        collection.put(hb.getId(), hb);
-    }
 
     /**
      * Добавляет готовый объект HumanBeing в коллекцию (ключ = id элемента).
@@ -65,18 +44,6 @@ public class CollectionManager {
      */
     public void addElement(HumanBeing hb) {
         collection.put(hb.getId(), hb);
-    }
-
-    /**
-     * Обновляет статический счётчик id в HumanBeing по максимальному id в коллекции.
-     * Вызывать после загрузки из файла, чтобы новые элементы получали корректные id.
-     */
-    public void update_ID() {
-        long max_id = -1;
-        for (HumanBeing hb: this.collection.values()) {
-            max_id = hb.getId() > max_id ? hb.getId() : max_id;
-        }
-        HumanBeing.updateID(max_id < 0 ? 0 : max_id);
     }
 
     /**
@@ -131,7 +98,7 @@ public class CollectionManager {
     }
 
     /**
-     * Обновляет элемент с заданным id через интерактивный ввод (HumanBeingBuilder.update).
+     * Обновляет элемент с заданным id.
      *
      * @param id id элемента для обновления
      * @throws EmptyCollectionException если коллекция пуста
@@ -171,9 +138,9 @@ public class CollectionManager {
     }
 
     /**
-     * Удаляет все элементы, меньшие заданного (сравнение по compareTo).
+     * Удаляет все элементы, меньшие заданного.
      *
-     * @param hb эталонный объект
+     * @param hb заданный объект
      * @throws EmptyCollectionException если коллекция пуста
      */
     public void removeLower(HumanBeing hb) throws EmptyCollectionException {
@@ -192,7 +159,7 @@ public class CollectionManager {
     /**
      * Удаляет все элементы, ключ которых больше заданного.
      *
-     * @param akey граничный ключ (остаются элементы с ключом &lt;= akey)
+     * @param akey заданный ключ (остаются элементы с ключом <= akey)
      * @throws EmptyCollectionException если коллекция пуста
      */
     public void removeGreaterKey(long akey) throws EmptyCollectionException {
@@ -230,7 +197,7 @@ public class CollectionManager {
     }
 
     /**
-     * Выводит элементы в порядке возрастания (сортировка по compareTo).
+     * Выводит элементы в порядке возрастания.
      *
      * @throws EmptyCollectionException если коллекция пуста
      */
@@ -262,6 +229,18 @@ public class CollectionManager {
         for (Double speed: sortedSpeeds) {
             System.out.println(speed);
         }
+    }
+
+    /**
+     * Обновляет статический счётчик id в HumanBeing по максимальному id в коллекции.
+     * Вызывается после загрузки из файла, чтобы новые элементы получали корректные id.
+     */
+    public void update_ID() {
+        long max_id = -1;
+        for (HumanBeing hb: this.collection.values()) {
+            max_id = hb.getId() > max_id ? hb.getId() : max_id;
+        }
+        HumanBeing.updateID(max_id < 0 ? 0 : max_id);
     }
 
     /**

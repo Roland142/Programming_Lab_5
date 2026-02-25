@@ -4,7 +4,7 @@ import managers.CollectionManager;
 import exceptions.EmptyCollectionException;
 
 /**
- * Команда {@code print_field_ascending_impact_speed} — выводит значения поля impactSpeed всех элементов в порядке возрастания.
+ * Команда print_field_ascending_impact_speed — выводит значения поля impactSpeed всех элементов в порядке возрастания.
  */
 public class PrintFieldAscendingImpactSpeed extends Command {
     private final CollectionManager collectionManager;

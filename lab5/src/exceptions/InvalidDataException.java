@@ -1,8 +1,7 @@
 package exceptions;
 
 /**
- * Исключение при некорректных данных (валидация полей, парсинг и т.д.).
- * Checked-исключение — объявляется в сигнатурах методов.
+ * Исключение при некорректных данных
  */
 public class InvalidDataException extends Exception {
 

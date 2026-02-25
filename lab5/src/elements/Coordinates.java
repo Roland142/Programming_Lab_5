@@ -3,12 +3,12 @@ package elements;
 import exceptions.InvalidDataException;
 
 /**
- * Координаты в двумерном пространстве.
+ * Координаты
  * x должно быть больше -975 и не null, y не может быть null.
  */
 public class Coordinates {
-    private Double x; // > -975, не null
-    private Integer y; // не null
+    private Double x;
+    private Integer y;
 
     /**
      * Создаёт координаты с заданными x и y.
@@ -25,7 +25,7 @@ public class Coordinates {
     /**
      * Возвращает абсциссу.
      *
-     * @return x (не null, &gt; -975)
+     * @return x
      */
     public Double getX() { return x; }
 
@@ -33,7 +33,7 @@ public class Coordinates {
      * Устанавливает абсциссу.
      *
      * @param x значение (не null, строго больше -975)
-     * @throws InvalidDataException если x null или &lt;= -975
+     * @throws InvalidDataException если x null или <= -975
      */
     public void setX(Double x) throws InvalidDataException {
         if (x == null || x <= -975) throw new InvalidDataException("x должно быть > -975 и не null");
@@ -43,14 +43,14 @@ public class Coordinates {
     /**
      * Возвращает ординату.
      *
-     * @return y (не null)
+     * @return y
      */
     public Integer getY() { return y; }
 
     /**
      * Устанавливает ординату.
      *
-     * @param y значение (не null)
+     * @param y значение
      * @throws InvalidDataException если y == null
      */
     public void setY(Integer y) throws InvalidDataException {
@@ -59,7 +59,7 @@ public class Coordinates {
     }
 
     /**
-     * Возвращает строковое представление координат для CSV (x;y).
+     * Возвращает строковое представление координат для csv (x;y).
      *
      * @return строка вида "x;y"
      */
@@ -67,6 +67,11 @@ public class Coordinates {
         return x + ";" + y;
     }
 
+    /**
+     * Возвращает строковое представление координат для вывода.
+     *
+     * @return строка вида "(x;y)"
+     */
     @Override
     public String toString() {
         return "(" + x + "," + y + ")";

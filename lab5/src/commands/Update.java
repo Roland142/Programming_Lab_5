@@ -4,7 +4,7 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда {@code update id} — обновляет элемент с заданным id (пошаговый ввод новых полей).
+ * Команда update id — обновляет элемент с заданным id.
  */
 public class Update extends Command {
     private final CollectionManager collectionManager;

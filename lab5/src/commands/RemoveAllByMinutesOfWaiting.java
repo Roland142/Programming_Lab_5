@@ -4,7 +4,7 @@ import managers.CollectionManager;
 import exceptions.*;
 
 /**
- * Команда {@code remove_all_by_minutes_of_waiting minutesOfWaiting} — удаляет все элементы с заданным значением поля minutesOfWaiting.
+ * Команда remove_all_by_minutes_of_waiting minutesOfWaiting — удаляет все элементы с заданным значением поля minutesOfWaiting.
  */
 public class RemoveAllByMinutesOfWaiting extends Command {
     private final CollectionManager collectionManager;

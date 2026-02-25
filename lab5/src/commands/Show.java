@@ -3,7 +3,7 @@ package commands;
 import managers.CollectionManager;
 
 /**
- * Команда {@code show} — выводит все элементы коллекции в строковом представлении.
+ * Команда show — выводит все элементы коллекции в строковом представлении.
  */
 public class Show extends Command{
     private final CollectionManager collectionManager;

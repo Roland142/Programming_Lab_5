@@ -15,6 +15,9 @@ public class CarBuilder extends Builder {
      * @throws InvalidDataException при ошибке ввода (не используется в текущей реализации)
      */
     public Car create() throws InvalidDataException {
-        return new Car(buildString("Car name"));
+        String name = buildStringNullable("Car name");
+        if (name == null)
+            return null;
+        return new Car(name);
     }
 }

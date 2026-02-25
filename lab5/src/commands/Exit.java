@@ -2,7 +2,7 @@ package commands;
 
 
 /**
- * Команда {@code exit} — завершает программу без сохранения коллекции в файл.
+ * Команда exit — завершает программу без сохранения коллекции в файл.
  */
 public class Exit extends Command {
 
@@ -20,7 +20,6 @@ public class Exit extends Command {
      */
     @Override
     public void execute(String args) {
-
         System.exit(0);
     }
 }

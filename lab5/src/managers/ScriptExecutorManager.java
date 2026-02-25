@@ -8,7 +8,7 @@ import java.util.ArrayDeque;
 
 /**
  * Чтение ввода из файла скрипта (очередь файлов для execute_script).
- * Реализует {@link interfaces.Reader}; при ошибке чтения nextLine() возвращает пустую строку.
+ * Реализует {@link interfaces.Reader}.
  */
 public class ScriptExecutorManager implements Reader {
     private static final ArrayDeque<String> filepaths = new ArrayDeque<>();
@@ -48,9 +48,9 @@ public class ScriptExecutorManager implements Reader {
     }
 
     /**
-     * Проверяет, не выполнялся ли уже этот файл (защита от рекурсии по путям).
+     * Проверяет, не выполнялся ли уже этот файл (защита от рекурсии).
      *
-     * @param filepath путь к файлу (приводится к абсолютному)
+     * @param filepath путь к файлу
      * @return true, если файл уже в стеке выполнения
      */
     public static boolean fileReapeting(String filepath) {
