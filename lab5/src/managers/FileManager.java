@@ -1,6 +1,7 @@
 package managers;
 
 import elements.*;
+import exceptions.AccessToFileException;
 import exceptions.InvalidDataException;
 
 import java.util.Scanner;
@@ -38,7 +39,7 @@ public class FileManager {
      * @throws IOException ошибка чтения файла
      * @throws InvalidDataException некорректные данные в строке CSV
      */
-    public void addFromFile(String file_path) throws IOException, InvalidDataException {
+    public void addFromFile(String file_path) throws AccessToFileException, InvalidDataException, IOException {
         File file = new File(file_path);
         try (Scanner scanner = new Scanner(file)) {
             String line;
@@ -56,6 +57,8 @@ public class FileManager {
                     collectionManager.insert(key, hb);
                 }
             }
+        } catch (IOException e) {
+            throw new AccessToFileException("Ошибка доступа к файлу");
         }
     }
 
@@ -65,7 +68,7 @@ public class FileManager {
      *
      * @param file_path путь к файлу
      */
-    public void saveObjects(String file_path) {
+    public void saveObjects(String file_path) throws AccessToFileException {
         try (PrintWriter writer = new PrintWriter(new File(file_path))) {
             for (Map.Entry<Long, HumanBeing> entry : collectionManager.getCollection().entrySet()) {
                 long key = entry.getKey();
@@ -74,7 +77,7 @@ public class FileManager {
                 writer.println(key + ";" + row);
             }
         } catch (IOException e) {
-            System.err.println("Ошибка при записи в файл: " + e.getMessage());
+            throw new AccessToFileException("Ошибка при записи в файл: " + e.getMessage());
         }
     }
 

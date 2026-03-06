@@ -1,5 +1,6 @@
 package managers;
 
+import exceptions.AccessToFileException;
 import interfaces.Reader;
 
 import java.io.*;
@@ -30,8 +31,14 @@ public class ScriptExecutorManager implements Reader {
      * @param file_path путь к файлу скрипта
      * @throws FileNotFoundException если файл не найден
      */
-    public static void pushFile(String file_path) throws FileNotFoundException {
+    public static void pushFile(String file_path) throws AccessToFileException, FileNotFoundException {
         File file = new File(file_path);
+        if (!file.exists()) {
+            throw new FileNotFoundException();
+        }
+        if (file.exists() && !file.canRead()) {
+            throw new AccessToFileException("Ошибка доступа к файлу");
+        }
         reader.push(new Scanner(file));
         filepaths.push(file_path);
     }

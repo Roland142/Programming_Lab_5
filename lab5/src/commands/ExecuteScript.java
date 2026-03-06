@@ -1,4 +1,5 @@
 package commands;
+import exceptions.AccessToFileException;
 import managers.CommandManager;
 import managers.FileMod;
 import managers.ScriptExecutorManager;
@@ -49,10 +50,13 @@ public class ExecuteScript extends Command {
             }
             ScriptExecutorManager.popfile();
         }
-        catch (FileNotFoundException fileNotFoundException){
+        catch (AccessToFileException e) {
+            System.err.println(e.getMessage());
+        }
+        catch (FileNotFoundException e){
             System.err.println("Такого файла не существует");
         } catch (IOException e) {
-            System.err.println("Ошибка ввода вывода");
+            System.err.println("Ошибка чтения файла");
         } catch (NoSuchElementException e) { }
         FileMod.setFileMod(false);
     }

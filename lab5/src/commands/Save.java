@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.AccessToFileException;
 import managers.FileManager;
 
 /**
@@ -27,7 +28,11 @@ public class Save extends Command {
      */
     @Override
     public void execute(String args) {
+        try {
             fileManager.saveObjects(file_path);
             System.out.println("Объекты успешно сохранены");
+        } catch (AccessToFileException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

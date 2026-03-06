@@ -265,7 +265,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @param id следующее значение счётчика (обычно max_id + 1 или 0 для пустой коллекции)
      */
     public static void updateID(long id) {
-        ID = id;
+        ID = id+1;
     }
 
     /**

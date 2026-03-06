@@ -1,3 +1,4 @@
+import exceptions.AccessToFileException;
 import exceptions.InvalidDataException;
 import managers.*;
 import managers.FileManager;
@@ -26,11 +27,11 @@ public class Main {
                 fileManager.addFromFile(args[0]);
                 collectionManager.update_ID();
                 System.out.println("Коллекция успешно загружена!");
-            } catch (IOException e) {
-                System.out.println("Ошибка чтения файла");
-            } catch (InvalidDataException e) {
+            } catch (AccessToFileException | InvalidDataException e) {
                 System.out.println(e.getMessage());
                 System.exit(1);
+            } catch (IOException e) {
+                System.out.println("Ошибка чтения файла");
             }
         } else {
             System.out.println("Файл не обнаружен");
